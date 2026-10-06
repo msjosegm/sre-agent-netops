@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "name": "network-alert-response"
+  },
+  "spec": {
+    "incidentPlatform": "AzMonitor",
+    "isEnabled": true,
+    "priorities": [
+      "Sev2"
+    ],
+    "titleContains": "SRE NetOps East-West Firewall Deny",
+    "handlingAgent": "network-operator",
+    "agentMode": "Autonomous",
+    "maxAutomatedInvestigationAttempts": 3,
+    "mergeEnabled": true,
+    "mergeWindowHours": 1
+  }
+}

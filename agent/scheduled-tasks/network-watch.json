@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "name": "network-connectivity-and-drift-watch"
+  },
+  "spec": {
+    "description": "Cada 30 minutos comprueba conectividad entre spokes y cambios de configuración de red en el resource group de la demo.",
+    "schedule": "*/30 * * * *",
+    "prompt": "Actúa exclusivamente sobre rg-sreagent-netops y sigue literalmente la skill network-triage. Ejecuta una sola orden por llamada y no uses `&&`, pipes, redirecciones, `--query`, `-o` ni `--output`. No uses `az rest`, Network Watcher, VM Run Command, `curl` ni extensiones. 1) Comprueba las dos rutas UDR, asociaciones de route tables, cuatro peerings, regla NSG, asociación ASG y Azure Firewall Policy con los comandos `show` de la skill. 2) Revisa Activity Log de los últimos 35 minutos. 3) Consulta AZFWNetworkRule con QueryLogAnalyticsByWorkspaceId y determina el último resultado TCP/8080 de cada sentido generado por las sondas continuas. 4) Si existe una única desviación inequívoca respecto al baseline, ejecuta solo el comando `update` de restauración correspondiente. 5) Verifica de nuevo el recurso y AZFWNetworkRule. No borres recursos, no cambies RBAC ni actúes fuera del resource group. Registra síntoma, evidencia, causa raíz, cambio aplicado y resultado.",
+    "handlingAgent": "network-operator",
+    "enabled": true,
+    "mode": "Autonomous"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "netops-demo-guardrails",
+  "type": "CommonPrompt",
+  "tags": [
+    "netops",
+    "safety"
+  ],
+  "properties": {
+    "prompt": "## Guardrails obligatorios\n- El único scope autorizado es `rg-sreagent-netops`; no leas ni modifiques recursos fuera de ese resource group.\n- Nunca borres recursos, cambies RBAC, eleves privilegios, cambies la suscripción ni deshabilites logging.\n- Solo restaura valores documentados en el baseline de la demo.\n- Usa `QueryLogAnalyticsByWorkspaceId` para KQL; no uses autenticación manual ni llamadas directas a Log Analytics.\n- Ejecuta exactamente una orden Azure CLI por llamada. No uses `&&`, pipes, redirecciones, `--query`, `-o` ni `--output`.\n- No uses `az rest`, Network Watcher, VM Run Command, `curl`, extensiones de Azure CLI ni comandos de Azure Firewall que requieran extensiones.\n- Para Firewall Policy usa `az resource show` o `az resource update` con `--namespace Microsoft.Network`, `--resource-type ruleCollectionGroups` y `--parent firewallPolicies/afwp-sre-netops-sc`.\n- Antes de actuar, reúne evidencia de rutas, asociaciones de subnet, NSG, ASG, peering, Azure Firewall, Activity Log y AZFWNetworkRule.\n- Después de actuar, verifica el recurso y confirma con AZFWNetworkRule que las sondas continuas vuelven a registrar Allow en ambos sentidos.\n- Si la causa no es inequívoca o la remediación excede el scope, no actúes y explica el bloqueo."
+  }
+}
